@@ -1,8 +1,14 @@
 import z from 'zod'
 
 const mapPersonSchema = z.object({
-  name: z.string({ message: 'Name is required' }),
-  age: z.coerce.number()
+  name: z.string({
+    required_error: "Name is required",
+    invalid_type_error: "Name must be a string",
+  }),
+  age: z.number({
+    required_error: "Age is required",
+    invalid_type_error: "Age must be a number",
+  })
 })
 
 export function mapPerson(personStr) {
@@ -19,13 +25,9 @@ export function mapPerson(personStr) {
   }
 
   if (mapPerson.error.name === 'ZodError') {
-    console.log(mapPerson)
-    console.log(mapPerson.error.format())
-    // return {
-    //   name: undefined,
-    //   age: undefined,
-    //   createdAt: new Date()
-    // }
-    throw new Error('Name and age are required')
+    return {
+      name: mapPerson.error.format().name._errors.join(' '),
+      age: mapPerson.error.format().age._errors.join(' '),
+    }
   }
 }

@@ -33,8 +33,19 @@ describe('Person Test Suite', () => {
     // })
     it('should not map person given invalid JSON data', () => {
       const personStr = '{}'
-
-      expect(() => mapPerson(personStr)).toThrow('Name and age are required')
+      const mappedPerson =  mapPerson(personStr)
+      expect(mappedPerson).toStrictEqual({
+        name: 'Name is required',
+        age: 'Age is required',
+      })
+    })
+    it('should not map person given invalid JSON data', () => {
+      const personStr = '{"name": 123, "age": "32"}'
+      const mappedPerson =  mapPerson(personStr)
+      expect(mappedPerson).toStrictEqual({
+        name: 'Name must be a string',
+        age: 'Age must be a number',
+      })
     })
   })
 })
