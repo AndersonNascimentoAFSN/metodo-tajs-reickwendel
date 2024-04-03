@@ -1,4 +1,4 @@
-import { BeforeStep, When, Given, Then } from '@cucumber/cucumber'
+import { BeforeStep, When, Then } from '@cucumber/cucumber'
 import assert from 'node:assert'
 
 let _testServerAddress = ''

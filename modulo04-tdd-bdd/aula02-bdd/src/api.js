@@ -16,7 +16,7 @@ function getUserCategory(birthDay) {
   }
 
   if (age >= 25 && age <= 50) {
-    return 'adult'
+    return 'Adult'
   }
 
   if (age >= 51) {
