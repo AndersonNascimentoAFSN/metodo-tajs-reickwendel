@@ -1,0 +1,21 @@
+{
+  "name": "tdd-real-life",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha --parallel --exit test/",
+    "test:dev": "npx mocha test/ -w --experimental-modules",
+    "test:cov": "npx nyc --reporters=html,text npm test"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "Anderson Nascimento",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "nyc": "^15.1.0",
+    "sinon": "^17.0.1"
+  }
+}
