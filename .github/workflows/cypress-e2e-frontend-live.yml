@@ -1,0 +1,31 @@
+name: Cypress Tests - e2e Frontend Live
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'e2e-frontend-live/**.js'
+      - 'e2e-frontend-live/**.json'
+      - 'e2e-frontend-live/**.yml'
+
+jobs:
+  e2e-frontend-live-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: v20.12.0
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./e2e-frontend-live
+
+      - name: Run Cypress tests
+        run: npm run cypress:headless
+        working-directory: ./e2e-frontend-live
